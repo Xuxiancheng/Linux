@@ -1,0 +1,161 @@
+"通用的设置
+set number
+
+"sv <filename> 纵向打开一个文件
+set splitbelow  
+"vs <filename> 横向分割布局
+set splitright
+
+"不用鼠标就可以切换到切割的分局
+"ctrl-j 切换到下方
+"ctrl-k 切换到上方
+"ctrl-l 切换到右侧
+"ctrl-h 切换到左侧
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+"代码折叠
+"za 来进行手动折叠(取消折叠),也可以使用空格键
+set foldmethod=indent
+set foldlevel=99
+nnoremap <space> za
+
+"支持utf-8的编码
+set encoding=utf-8
+
+"语法高亮
+let python_highlight_all=1
+
+"去掉vi的一致性
+set nocompatible
+
+"显示匹配的括号
+set showmatch
+
+"高亮搜索项
+set hlsearch
+
+"突出显示当前行
+set cursorline
+
+"突出显示当前列
+"set cursorcolumn
+
+"设置实时搜索
+set incsearch
+
+"搜索时大小写不敏感
+set ignorecase
+
+"vim自身命令行模式自动补全
+set wildmenu
+
+"开启自动缩进 
+set ai
+
+"开启智能对齐
+set smartindent
+
+"禁止光标闪烁
+set gcr=a:block-blinkon0
+
+"允许用制定语法高亮配色方案替换 默认方案
+syntax on
+
+"F5运行代码
+map <F5> :call CompileRun()<CR>
+func! CompileRun()
+	exec "W"
+	if &filetype=='java'
+		exec "!javac %"
+		exec "!time java %<"
+	elseif &filetype=='sh'
+		:!time bash %
+	elseif &filetype=='python'
+		exec "!time python3.5 %"
+	endif
+endfunc
+
+
+
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+" The following are examples of different formats supported.
+" Keep Plugin commands between vundle#begin/end.
+" plugin on GitHub repo
+Plugin 'tpope/vim-fugitive'
+" plugin from http://vim-scripts.org/vim/scripts.html
+" Plugin 'L9'
+
+"indenLine 缩进指示线
+Plugin 'Yggdroot/indentLine'
+"缩进指示线"
+let g:indentLine_char='┆'
+let g:indentLine_enabled = 1
+
+"自动补全括号插件
+Plugin 'jiangmiao/auto-pairs'
+
+"vim-ariline ，状态栏插件,可以让vim状态栏美观
+Plugin 'bling/vim-airline'
+set laststatus=2
+
+"语法检查/高亮,每次检查都会检查代码的语法
+Plugin 'scrooloose/syntastic'
+
+
+"自动缩进插件,符合pep8标准
+Plugin 'vim-scripts/indentpython.vim'
+
+"添加pep8风格检查
+Plugin 'nvie/vim-flake8'
+
+"配色方案,终端模式尝试zenburn方案
+"Plugin 'jnurmine/Zenburn'
+Plugin 'sickill/vim-monokai'
+
+syntax enable
+
+colorscheme monokai 
+
+"超级搜索
+Plugin 'kien/ctrlp.vim'
+
+"python 的补全插件 jedi
+Plugin 'davidhalter/jedi-vim'
+
+" Git plugin not hosted on GitHub
+"Plugin 'git://git.wincent.com/command-t.git'
+
+" git repos on your local machine (i.e. when working on your own plugin)
+Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+" Install L9 and avoid a Naming conflict if you've already installed a
+" different version somewhere else.
+" Plugin 'ascenator/L9', {'name': 'newL9'}
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
