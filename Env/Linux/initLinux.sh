@@ -14,7 +14,13 @@ sudo apt install wget
 sudo apt install git 
 sudo apt-get install fonts-wqy-microhei
 sudo apt-get install shutter
-
+sudo apt install ubuntu-restricted-extras
+sudo apt install p7zip-full
+sudo apt install zip
+sudo apt install vlc
+sudo apt install gitk
+sudo apt install meld
+sudo apt install wps-office
 
 #以下是选择安装
 #安装zsh
