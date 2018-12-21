@@ -1,2 +1,2 @@
 # Linux
-linux学习及配置
+一些Linux和Mac的软件及配置
