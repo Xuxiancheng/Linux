@@ -1,0 +1,175 @@
+"通用的设置
+set number
+
+"sv <filename> 纵向打开一个文件
+set splitbelow
+"vs <filename> 横向分割布局
+set splitright
+
+"不用鼠标就可以切换到切割的分局
+"ctrl-j 切换到下方
+"ctrl-k 切换到上方
+"ctrl-l 切换到右侧
+"ctrl-h 切换到左侧
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+"代码折叠
+"za 来进行手动折叠(取消折叠),也可以使用空格键
+set foldmethod=indent
+set foldlevel=99
+nnoremap <space> za
+
+"增强模式中的命令行自动完成操作
+set wildmenu
+
+"支持utf-8的编码
+set encoding=utf-8
+
+"语法高亮
+let python_highlight_all=1
+syntax on
+
+"去掉vi的一致性
+set nocompatible
+
+"显示匹配的括号
+set showmatch
+
+"高亮搜索项
+set hlsearch
+
+"突出显示当前行
+set cursorline
+
+"突出显示当前列
+"set cursorcolumn
+
+"F5运行代码
+map <F5> :call CompileRun()<CR>
+func! CompileRun()
+	exec "W"
+	if &filetype=='java'
+		exec "!javac %"
+		exec "!time java %<"
+	elseif &filetype=='sh'
+		:!time bash %
+	elseif &filetype=='python'
+		exec "!time python3.5 %"
+	endif
+endfunc
+
+
+"""""""""""""""""""""""""""
+"vundle.vim可以管理,安装，卸载你的插件
+"""""""""""""""""""""""""""
+
+"似乎这里是必须的
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+"设置vundle的路径
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+"所有的插件都要在begin跟end
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+" The following are examples of different formats supported.
+" Keep Plugin commands between vundle#begin/end.
+" plugin on GitHub repo
+Plugin 'tpope/vim-fugitive'
+
+Plugin 'L9'
+
+"以下是自己所需要的插件
+
+"NERDTree   插件，用于浏览文件系统的树型资源管理外挂
+Plugin 'scrooloose/nerdtree'
+let NERDTreeWinPos='right'
+let NERDTreeWinSize=30
+"F2开启和关闭树"
+map <F2> :NERDTreeToggle<CR>
+let NERDTreeChDirMode=1
+""显示书签"
+let NERDTreeShowBookmarks=1
+"设置忽略文件类型"
+let NERDTreeIgnore=['\~$', '\.pyc$', '\.swp$']
+
+"indenLine 缩进指示线
+Plugin 'Yggdroot/indentLine'
+"缩进指示线"
+let g:indentLine_char='┆'
+let g:indentLine_enabled = 1
+
+"markdown插件
+Plugin 'tamlok/vim-markdown'
+"markdown预览
+Plugin 'kannokanno/previm'
+Plugin 'tyru/open-browser.vim'
+
+
+"自动补全括号插件
+Plugin 'jiangmiao/auto-pairs'
+
+"多行注释插件，在正常模式下使用v，选择要注释的行,然后使用F4
+Plugin 'scrooloose/nerdcommenter'
+nnoremap <F4> ci
+
+"vim-ariline ，状态栏插件,可以让vim状态栏美观
+Plugin 'bling/vim-airline'
+set laststatus=2
+
+"主题插件
+Plugin 'flazz/vim-colorschemes'
+colorscheme molokai
+
+"自动化格式化代码
+Plugin 'Chiel92/vim-autoformat'
+let g:formatdef_my_cpp = '"astyle --style=google"'
+let g:formatters_cpp = ['my_cpp']
+au BufWrite * :Autoformat
+
+"自动缩进插件,符合pep8标准
+"Plugin 'vim-scripts/indentpython.vim'
+
+
+"语法检查/高亮,每次检查都会检查代码的语法
+Plugin 'scrooloose/syntastic'
+
+"添加pep8风格检查
+"Plugin 'nvie/vim-flake8'
+
+"超级搜索
+Plugin 'kien/ctrlp.vim'
+
+"python 的补全插件 jedi
+Plugin 'davidhalter/jedi-vim'
+
+"import 排序，强迫症福音
+Plugin 'fisadev/vim-isort'
+
+"Java补全,ctrl-x ctrl-o即可补全
+"Plugin 'artur-shaik/vim-javacomplete2'
+
+
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+
