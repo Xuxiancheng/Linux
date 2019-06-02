@@ -9,6 +9,9 @@ sudo apt install gdebi
 sudo apt install vim 
 sudo apt install sqlite3
 sudo apt install adb
+sudo apt install tig
+sudo apt install gitk
+sudo apt install meld
 sudo apt install shadowsocks
 sudo apt install wget 
 sudo apt install git 
