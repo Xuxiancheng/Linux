@@ -37,6 +37,8 @@ echo "配置完成!!!!!!"
 echo "正在配置新的vimrc文件"
 
 cp vimrc  ~/.vimrc
+mkdir -p ~/.vim/colors
+cp molokai.vim  ~/.vim/colors
 
 echo "配置文件完成，旧文件位于'~/.vimrc_bak'，可以随时将其恢复!"
 
